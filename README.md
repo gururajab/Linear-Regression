@@ -19,44 +19,64 @@ m is the slope of the line, representing the change in y for a one unit change i
 b is the y-intercept, representing the value of y when x is 0
 
 Multiple Linear regression : 
-Multiple linear regression is a statistical method used to model the relationship between a dependent variable and two or more independent variables. In multiple linear regression, the goal is to find the best-fitting linear equation that explains the variation in the dependent variable based on the multiple independent variables. The general form of the multiple linear regression equation is:
+
+Multiple linear regression is a statistical method used to model the relationship between a dependent variable and two or more independent variables. In multiple linear regression, the goal is to find the best-fitting linear equation that explains the variation in the dependent variable based on the multiple independent variables. 
+
+The general form of the multiple linear regression equation is:
 
 y= b0+b1x1+b2x2+ … + bnxn+ε
 
 Where:
 y is the dependent variable,
+
 x1, x2, ….xn are the independent variables
+
 b0 is the y-intercept,
+
 b1, b2, …, bn are the coefficients associated with each independent variable,ε represents the error term
 
 Assumptions of Linear Regression:
 1. Linearity:
 Assumption: The relationship between the dependent variable and independent variable(s) is linear.
+
 Rationale: This assumption posits that the effect of a unit change in the independent variable(s) is constant across all levels.
 
 Solutions to achieve linearity: Explore transformations, such as polynomial regression, or employ spline functions to capture non-linear patterns
 
 2. No Autocorrelation:
 Assumption: Residuals (the differences between observed and predicted values) are independent of each other.
+
 Rationale: Independence ensures that the occurrence of an error in predicting the dependent variable at one point does not provide information about errors at other points. Violations of independence can lead to biased estimates and incorrect inferences.
+
 Durbin Watson test : Interpretation: Values around 2 suggest no autocorrelation. Deviations may indicate positive or negative autocorrelation.
 
 3. Homoscedasticity:
 Assumption: Residuals exhibit constant variance across all levels of the independent variable(s).
+
 Rationale: Homoscedasticity is crucial to maintain the efficiency and reliability of parameter estimates. Heteroscedasticity, or varying levels of variance, can lead to biased standard errors and impact the precision of statistical tests.
+
 Solution: Consider data transformations, such as log transformations, or use weighted least squares regression to address heteroscedasticity.
+
 4. Normality of Residuals:
+
 Assumption: Residuals are normally distributed.
+
 Rationale: Normality is essential for valid hypothesis testing and constructing reliable confidence intervals. While the central limit theorem suggests that the distribution of residuals becomes normal as the sample size increases, assessing normality directly is still important, especially for smaller samples.
+
 Solution: Apply transformations to the dependent variable or use robust regression techniques that are less sensitive to non-normality.
+
 5. No Perfect Multicollinearity:
+   
 Assumption: Independent variables are not perfectly correlated.
+
 Rationale: Perfect multicollinearity, where one independent variable can be exactly predicted by another, makes it challenging to estimate the individual effects of variables. It can lead to inflated standard errors and imprecise parameter estimates.
+
 Solution: Identify highly correlated variables using VIFs and consider removing or combining variables to mitigate multicollinearity.
+
 Model Validation Techniques:
 1. Residual Analysis:
 Method: Examine residual plots, such as scatterplots, against predicted values or fitted values.
-Purpose: Identify patterns, outliers, or non-linearity in residuals.
+Purpose: Identify patterns, outliers, or non-linearity in residuals.  
 2. Hypothesis Testing:
 Method: Conduct hypothesis tests for individual coefficients and the overall model (F-test).
 Purpose: Assess the statistical significance of predictors and the model as a whole.
