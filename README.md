@@ -8,9 +8,13 @@ y=mx+b
 
 Where:
 y is the dependent variable (response),
+
 x is the independent variable (predictor),
+
 m is the slope of the line, representing the change in y for a one unit change in x
+
 b is the y-intercept, representing the value of y when x is 0
+
 Multiple Linear regression : 
 Multiple linear regression is a statistical method used to model the relationship between a dependent variable and two or more independent variables. In multiple linear regression, the goal is to find the best-fitting linear equation that explains the variation in the dependent variable based on the multiple independent variables. The general form of the multiple linear regression equation is:
 
