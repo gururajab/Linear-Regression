@@ -3,7 +3,10 @@
 Linear regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. It serves as a fundamental tool in predictive modeling, providing insights into the quantitative associations among variables. 
 
 Simple Linear regression
-Simple linear regression is a statistical method used to model the relationship between a single independent variable (predictor) and a dependent variable (response). The goal is to establish a linear equation that best represents the relationship between the variables. The equation takes the form:
+Simple linear regression is a statistical method used to model the relationship between a single independent variable (predictor) and a dependent variable (response). The goal is to establish a linear equation that best represents the relationship between the variables. 
+
+The equation takes the form:
+
 y=mx+b
 
 Where:
