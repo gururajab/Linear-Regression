@@ -96,3 +96,80 @@ Interpretation: Lower MSE or RSS values indicate better model performance. MSE i
 Definition: The square root of the MSE, providing an interpretable scale in the same units as the dependent variable.
 Interpretation: Similar to MSE, lower RMSE values indicate better predictive performance.
 
+Below is the detailed python code for California House Price Prediction using Linear Regression
+
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Load the California Housing dataset
+from sklearn.datasets import fetch_california_housing
+california_housing = fetch_california_housing()
+data = pd.DataFrame(california_housing.data, columns=california_housing.feature_names)
+data['PRICE'] = california_housing.target
+
+# Explore the dataset
+print(data.head())
+
+# Check for linearity and visualize the data
+sns.pairplot(data, x_vars=data.columns[:-1], y_vars='PRICE', kind='scatter', diag_kind='kde')
+plt.show()
+
+# Check for homoscedasticity using residual plot
+X = data.drop('PRICE', axis=1)
+y = data['PRICE']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = sm.OLS(y_train, sm.add_constant(X_train)).fit()
+residuals = model.resid
+
+plt.scatter(model.predict(), residuals, color='red')
+plt.axhline(y=0, color='black', linestyle='--')
+plt.title('Residual plot for homoscedasticity')
+plt.xlabel('Fitted values')
+plt.ylabel('Residuals')
+plt.show()
+
+# Check for normality of residuals
+sm.qqplot(residuals, line='s')
+plt.title('QQ Plot for normality of residuals')
+plt.show()
+
+# Check for multicollinearity using variance inflation factor (VIF)
+X_train_with_const = sm.add_constant(X_train)
+vif = pd.DataFrame()
+vif["Variable"] = X_train_with_const.columns
+vif["VIF"] = [variance_inflation_factor(X_train_with_const.values, i) for i in range(X_train_with_const.shape[1])]
+print(vif)
+
+# If VIF values are high, consider removing one of the correlated variables
+
+# Fit the linear regression model
+model = sm.OLS(y_train, sm.add_constant(X_train)).fit()
+
+# Make predictions on the testing set
+X_test_with_const = sm.add_constant(X_test)
+y_pred = model.predict(X_test_with_const)
+
+# Evaluate the model
+print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
+print('R-squared:', metrics.r2_score(y_test, y_pred))
+
+# Visualize the regression line
+plt.scatter(y_test, y_pred, color='black')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], linestyle='--', color='red', linewidth=2)
+plt.title('Actual vs Predicted values')
+plt.xlabel('Actual values')
+plt.ylabel('Predicted values')
+plt.show()
+
+# Interpretation of the linear regression model
+print(model.summary())
+
